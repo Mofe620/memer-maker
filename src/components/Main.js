@@ -21,7 +21,7 @@ export default function Main() {
 
   function randomImage(){
     const randomPick = Math.floor(Math.random() * imgData.length)
-    console.log(randomPick);
+    //console.log(randomPick);
     setMeme(prevMeme => ({...prevMeme, imgNumber: randomPick}));
   }
 
