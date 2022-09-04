@@ -40,7 +40,7 @@ export default function Main() {
   const [baseImg, setBaseImg] = useState(null)
   React.useEffect(()=>{
     const rawMemeImage = document.querySelector('#meme');
-    let currentBase64Image = getBase64Image(rawMemeImage)
+    let currentBase64Image = getBase64Image(rawMemeImage);
     setBaseImg(currentBase64Image)
   },[meme.imgNumber])
 
@@ -74,7 +74,7 @@ export default function Main() {
       a.click();
     }
   }
-
+  
   return (
     <div className="container">
       <div className="meme-card">
@@ -90,7 +90,7 @@ export default function Main() {
           <p id='bottom'>{meme.bottomText}</p> */}
 
           {/* Something new and much better */}
-          {baseImg != null &&
+          {baseImg != null && baseImg !== "data:," ?
           <svg id='svg' 
               width="100%"
               height="100%"
@@ -131,7 +131,9 @@ export default function Main() {
               >
                   {meme.bottomText}
               </text>
-            </svg>}
+            </svg> : 
+            <img id='meme' src={imgData[meme.imgNumber].src} alt={imgData[meme.imgNumber].alt} crossOrigin="anonymous" />
+            }
         </div>
         <button onClick={downloadMeme}>Download</button>
       </div>
@@ -157,4 +159,8 @@ export default function Main() {
 // On Download Button click, downloadMeme function runs
 // When Change Image Button is clicked, function randomImage is called and the process starts again
 // Top and Bottom Text are held in state and displayed accordingly
-// Might make text draggeable in future.
+// Might make text draggable in future.
+
+// Note: baseImg !== "data:," included in the ternary condition because
+// On initial rendering, computed baseImg was == "data:," which is a blank image 
+// We don't want the blank image showing on initial render, so I put a placeholder image instead. 

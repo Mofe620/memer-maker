@@ -1,1 +1,2 @@
-This was a simple reproduction of the meme maker project over on Scrimba. It simply works by calling images from an api and having text positioned on the imaes, and kept in hook with the state. The meme cannot be downloaded or anything. The MASTER branch will contain the fully functional memer maker with download enabled.
+This version takes the Simple Branch to the next level, utilizing svg and canvas to draw the new image with the meme text and enabling download.
+Might consider making text draggable in future.
