@@ -102,6 +102,12 @@ footer {
 }
 
 /* MEDIA QUERY */
+
+@media (max-width:900px) {
+  .meme-card {
+    width: 70%;
+  }
+}
 @media (max-width:600px) {
   header {
     display: block;
@@ -124,6 +130,11 @@ footer {
   input {
     margin: 0.25em 0;
     width: 100%;
+    text-align: center;
+  }
+  input:placeholder-shown {
+    letter-spacing: 2px;
+    text-align: justify;
   }
   button {
     padding: 0.75 0;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import memesData from './memesData';
+import {v4 as uuidv4} from 'uuid';
 
 const memeImages = memesData.data.memes;
 
@@ -8,7 +9,6 @@ const imgData = memeImages.map(item => ({alt: item.name, src: item.url}));
 const IMAGES = memeImages.map(item => (<img src={item.url} alt={item.name} crossOrigin='anonymous' />));
 
 export default function Main() {
-
   const [meme, setMeme] = useState({
     top: "",
     bottom: "",
@@ -33,7 +33,7 @@ export default function Main() {
     var ctx = canvas.getContext("2d",{preserveDrawingBuffer: true});
     ctx.drawImage(img, 0, 0);
     var dataURL = canvas.toDataURL("image/png");
-    console.log(dataURL)
+    //console.log(dataURL)
     return dataURL;
   }
   
@@ -79,8 +79,8 @@ export default function Main() {
     <div className="container">
       <div className="meme-card">
         <div className="input-group">
-          <input type="text" name='topText' placeholder="top text" value={meme.topText || ''} onChange={updateMeme} />
-          <input type="text" name='bottomText' placeholder='bottom text' value={meme.bottomText || ''} onChange={updateMeme} />
+          <input type="text" name='topText' placeholder="Top Text" value={meme.topText || ''} onChange={updateMeme} />
+          <input type="text" name='bottomText' placeholder='Bottom Text' value={meme.bottomText || ''} onChange={updateMeme} />
         </div>
         <button onClick={randomImage}>Get a new meme image 🖼</button>
         <div className="meme-holder">
@@ -92,14 +92,14 @@ export default function Main() {
           {/* Something new and much better */}
           {baseImg != null &&
           <svg id='svg' 
-              width={400}
-              height={200}
+              width="100%"
+              height="100%"
               xmlns="http://www.w3.org/2000/svg"
               xmlnshlink="http://www.w3.org/1999/xlink">
               <image
                 xlinkHref={baseImg}
-                height={200}
-                width={400}
+                height="100%"
+                width="100%"
                 x={0}
                 y={0}
                 />
@@ -144,7 +144,7 @@ export default function Main() {
       <div className="">
             <div className="" style={{display: 'none'}}>
             <img id='meme' src={imgData[meme.imgNumber].src} alt={imgData[meme.imgNumber].alt} crossOrigin="anonymous" />
-              {IMAGES.map(item => <div>{item}</div>)}
+              {IMAGES.map(item => <div key={uuidv4()}>{item}</div>)}
             </div>
       </div>
     </div>
